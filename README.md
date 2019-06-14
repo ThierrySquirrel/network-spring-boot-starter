@@ -4,7 +4,7 @@ Network Request   SpringBoot Edition
 
 [中文](./README_zh_CN.md)
 
-支持功能：
+Support function：
 - [x] GetRequest
 - [x] PostRequest
 - [x] PutRequest
