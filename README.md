@@ -51,7 +51,7 @@ thierrysquirrel.socket-timeout= #Socket Timeout
  	InputStream getB();
  	
  	@DeleteRequest("https://***.com/***")
-     String delete(@NetworkHeader("Header") String header, @NetworkParam("paramA") String paramA, @NetworkParam("paramB") String paramB);
+    String delete(@NetworkHeader("Header") String header, @NetworkParam("paramA") String paramA, @NetworkParam("paramB") String paramB);
  
  }
  ```
@@ -67,10 +67,10 @@ thierrysquirrel.socket-timeout= #Socket Timeout
  	String postB(@NetworkFile("fileName") File fileName);
  	
  	@PutRequest("https://***.com/***")
-     String putA(@NetworkHeader("Header") String header, @NetworkParam("param") String paramA,@NetworkBody String body);
+    String putA(@NetworkHeader("Header") String header, @NetworkParam("param") String paramA,@NetworkBody String body);
      
  	@PutRequest("https://***.com/***")
-     String putB(@NetworkFile("fileName") File fileName);
+    String putB(@NetworkFile("fileName") File fileName);
  }
  ```
  # Send Requests

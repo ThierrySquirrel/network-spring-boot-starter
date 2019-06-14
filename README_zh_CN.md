@@ -50,7 +50,7 @@ public interface GetDeleteRequestDemo {
 	@GetRequest("https://***.com/***.png")
 	InputStream getB();
 	
-	@DeleteRequest("https://***.com/***")
+    @DeleteRequest("https://***.com/***")
     String delete(@NetworkHeader("Header") String header, @NetworkParam("paramA") String paramA, @NetworkParam("paramB") String paramB);
 
 }
@@ -66,10 +66,10 @@ public interface PostPutRequestDemo {
 	@PostRequest("https://***.com/***")
 	String postB(@NetworkFile("fileName") File fileName);
 	
-	@PutRequest("https://***.com/***")
+    @PutRequest("https://***.com/***")
     String putA(@NetworkHeader("Header") String header, @NetworkParam("param") String paramA,@NetworkBody String body);
     
-	@PutRequest("https://***.com/***")
+    @PutRequest("https://***.com/***")
     String putB(@NetworkFile("fileName") File fileName);
 }
 ```
