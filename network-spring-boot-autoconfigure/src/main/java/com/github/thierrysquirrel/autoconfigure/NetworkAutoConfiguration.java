@@ -16,8 +16,10 @@
 
 package com.github.thierrysquirrel.autoconfigure;
 
+import com.github.thierrysquirrel.annotation.EnableNetwork;
 import com.github.thierrysquirrel.aspect.NetworkAspect;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +37,7 @@ import javax.annotation.Resource;
  */
 @Configuration
 @EnableConfigurationProperties(NetworkProperties.class)
+@ConditionalOnBean(annotation = EnableNetwork.class)
 @Slf4j
 public class NetworkAutoConfiguration {
 	@Resource
