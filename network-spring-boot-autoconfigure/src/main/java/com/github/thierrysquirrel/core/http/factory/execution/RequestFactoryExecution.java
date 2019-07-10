@@ -32,6 +32,8 @@ import java.io.InputStream;
  * @since JDK 1.8
  */
 public class RequestFactoryExecution {
+	private RequestFactoryExecution() {
+	}
 
 	public static <T> Object execute(Request request, Class<T> resultType) throws IOException {
 

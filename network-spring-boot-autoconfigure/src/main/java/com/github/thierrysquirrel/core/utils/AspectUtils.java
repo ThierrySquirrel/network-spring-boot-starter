@@ -33,6 +33,8 @@ import java.lang.reflect.Parameter;
  * @since JDK 1.8
  */
 public class AspectUtils {
+	private AspectUtils() {
+	}
 
 	public static Method getMethod(ProceedingJoinPoint proceedingJoinPoint) {
 		MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
@@ -43,11 +45,12 @@ public class AspectUtils {
 		return getMethod(proceedingJoinPoint).getAnnotation(annotationClass);
 	}
 
-	public static Parameter[]  getParams(ProceedingJoinPoint proceedingJoinPoint) {
+	public static Parameter[] getParams(ProceedingJoinPoint proceedingJoinPoint) {
 		Method method = getMethod(proceedingJoinPoint);
 		return method.getParameters();
 	}
-	public static Class<?> getResultType(ProceedingJoinPoint proceedingJoinPoint){
+
+	public static Class<?> getResultType(ProceedingJoinPoint proceedingJoinPoint) {
 		return getMethod(proceedingJoinPoint).getReturnType();
 	}
 

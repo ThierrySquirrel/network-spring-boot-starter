@@ -29,10 +29,12 @@ import com.google.gson.GsonBuilder;
  * @since JDK 1.8
  */
 public class JsonUtils {
-
 	private static Gson gson = new GsonBuilder()
 			.setPrettyPrinting()
 			.create();
+
+	private JsonUtils() {
+	}
 
 	private static Gson getGson() {
 		return gson;
@@ -44,8 +46,8 @@ public class JsonUtils {
 	}
 
 
-	public static <T> T fromJson(String json, Class<T> classOfT) {
-		return getGson().fromJson(json, classOfT);
+	public static <T> T fromJson(String json, Class<T> classType) {
+		return getGson().fromJson(json, classType);
 	}
 
 }

@@ -39,6 +39,8 @@ import java.util.Set;
  * @since JDK 1.8
  */
 public class RequestBuilderStrategy {
+	private RequestBuilderStrategy() {
+	}
 
 	public static void builder(URIBuilder uriBuilder, Map<String, String> headers, Map<String, File> bodyFile, Set<String> bodySet, Parameter parameter, Object arg) {
 

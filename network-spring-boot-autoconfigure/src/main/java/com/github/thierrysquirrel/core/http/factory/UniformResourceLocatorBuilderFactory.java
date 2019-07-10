@@ -33,8 +33,11 @@ import java.net.URISyntaxException;
  * @since JDK 1.8
  */
 public class UniformResourceLocatorBuilderFactory {
+	private UniformResourceLocatorBuilderFactory() {
+	}
+
 	public static <T> URIBuilder create(T annotation) throws URISyntaxException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-		Method method = annotation.getClass().getMethod(RequestConstants.VALUE);
+		Method method = annotation.getClass().getMethod(RequestConstants.VALUE.getValue());
 		Object url = method.invoke(annotation);
 		return new URIBuilder(url.toString());
 	}

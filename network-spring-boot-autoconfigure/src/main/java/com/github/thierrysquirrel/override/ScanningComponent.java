@@ -38,10 +38,8 @@ public class ScanningComponent extends ClassPathScanningCandidateComponentProvid
 	@Override
 	protected boolean isCandidateComponent(
 			AnnotatedBeanDefinition annotatedBeanDefinition) {
-		if (annotatedBeanDefinition.getMetadata().isIndependent()) {
-			if (!annotatedBeanDefinition.getMetadata().isAnnotation()) {
-				return Boolean.TRUE;
-			}
+		if (annotatedBeanDefinition.getMetadata().isIndependent() && !annotatedBeanDefinition.getMetadata().isAnnotation()) {
+			return Boolean.TRUE;
 		}
 		return Boolean.FALSE;
 	}

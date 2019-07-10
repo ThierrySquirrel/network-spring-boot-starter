@@ -23,14 +23,16 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * ClassName: ObjectUtils 
- * Description: 
+ * ClassName: ObjectUtils
+ * Description:
  * date: 2019/6/8 21:20
+ *
  * @author ThierrySquirrel
- * @version
  * @since JDK 1.8
  */
 public class ObjectUtils {
+	private ObjectUtils() {
+	}
 
 	public static boolean isEmpty(Object obj) {
 		if (obj == null) {
@@ -55,6 +57,7 @@ public class ObjectUtils {
 
 		return Boolean.FALSE;
 	}
+
 	public static boolean isNotEmpty(Object obj) {
 		return !isEmpty(obj);
 	}

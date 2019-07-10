@@ -34,6 +34,6 @@ public class NetworkProxy implements InvocationHandler {
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws NetworkException {
-		throw new NetworkException("应该基于Aop实现！");
+		throw new NetworkException("Should be implemented based on AOP！");
 	}
 }

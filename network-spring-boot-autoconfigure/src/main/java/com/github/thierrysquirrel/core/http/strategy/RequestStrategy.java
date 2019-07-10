@@ -35,6 +35,9 @@ import java.net.URI;
  * @since JDK 1.8
  */
 public class RequestStrategy {
+	private RequestStrategy() {
+	}
+
 	public static <T> Request createRequest(T annotation, URI url) throws NetworkException {
 		if (annotation instanceof GetRequest) {
 			return Request.Get(url);
@@ -48,6 +51,6 @@ public class RequestStrategy {
 		if (annotation instanceof DeleteRequest) {
 			return Request.Delete(url);
 		}
-		throw new NetworkException("注解未存在");
+		throw new NetworkException("Annotations do not exist");
 	}
 }

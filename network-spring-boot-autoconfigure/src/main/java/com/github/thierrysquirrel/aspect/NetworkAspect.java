@@ -52,18 +52,22 @@ public class NetworkAspect {
 
 	@Pointcut("@annotation(com.github.thierrysquirrel.annotation.GetRequest)")
 	public void getRequestAspect() {
+		log.debug("Start agency GetRequest");
 	}
 
 	@Pointcut("@annotation(com.github.thierrysquirrel.annotation.PostRequest)")
 	public void postRequestAspect() {
+		log.debug("Start agency PostRequest");
 	}
 
 	@Pointcut("@annotation(com.github.thierrysquirrel.annotation.PutRequest)")
 	public void putRequestAspect() {
+		log.debug("Start agency PutRequest");
 	}
 
 	@Pointcut("@annotation(com.github.thierrysquirrel.annotation.DeleteRequest)")
 	public void deleteRequestAspect() {
+		log.debug("Start agency PutRequest");
 	}
 
 	@Around("getRequestAspect() ")

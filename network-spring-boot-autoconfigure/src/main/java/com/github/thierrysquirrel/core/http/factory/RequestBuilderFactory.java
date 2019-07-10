@@ -37,6 +37,8 @@ import java.util.Set;
  * @since JDK 1.8
  */
 public class RequestBuilderFactory {
+	private RequestBuilderFactory() {
+	}
 
 	public static <T> Request createRequest(T annotation, URI url, Map<String, String> headers, Map<String, File> bodyFile, Set<String> bodySet, NetworkProperties networkProperties) throws NetworkException {
 		Request request = RequestStrategy.createRequest(annotation, url);

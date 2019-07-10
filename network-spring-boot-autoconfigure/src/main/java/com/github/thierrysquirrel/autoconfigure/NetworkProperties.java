@@ -31,6 +31,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = NetworkProperties.NETWORK_PREFIX)
 public class NetworkProperties {
 	public static final String NETWORK_PREFIX = "thierrysquirrel";
-	public Integer connectTimeout = 1000;
-	public Integer socketTimeout = 1000;
+	private Integer connectTimeout = 1000;
+	private Integer socketTimeout = 1000;
 }

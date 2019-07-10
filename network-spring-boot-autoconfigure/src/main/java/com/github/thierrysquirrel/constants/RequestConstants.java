@@ -25,6 +25,20 @@ package com.github.thierrysquirrel.constants;
  * @author ThierrySquirrel
  * @since JDK 1.8
  */
-public interface RequestConstants {
-	String VALUE = "value";
+public enum RequestConstants {
+	/**
+	 * value
+	 */
+	VALUE("value");
+
+	private String value;
+
+	RequestConstants(String value) {
+		this.value = value;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
 }

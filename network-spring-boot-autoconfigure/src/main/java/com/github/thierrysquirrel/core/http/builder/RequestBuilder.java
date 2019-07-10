@@ -70,7 +70,7 @@ public class RequestBuilder {
 		if (ObjectUtils.isEmpty(bodySet)) {
 			return;
 		}
-		bodySet.forEach((body) -> request.bodyString(body, ContentType.APPLICATION_JSON));
+		bodySet.forEach(body -> request.bodyString(body, ContentType.APPLICATION_JSON));
 
 	}
 

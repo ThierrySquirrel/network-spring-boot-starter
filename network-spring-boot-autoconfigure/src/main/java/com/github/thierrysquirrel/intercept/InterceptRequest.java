@@ -46,11 +46,14 @@ import java.util.Set;
  * @since JDK 1.8
  */
 public class InterceptRequest {
+	private InterceptRequest() {
+	}
+
 	public static <T extends Annotation> Object intercept(NetworkProperties networkProperties, Object[] args, Parameter[] params, T annotation, Class<?> resultType) throws IOException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, URISyntaxException, NetworkException {
 		Map<String, String> headers = Maps.newConcurrentMap();
 		Map<String, File> bodyFile = Maps.newConcurrentMap();
 		URIBuilder uriBuilder = UniformResourceLocatorBuilderFactory.create(annotation);
-		Set<String> bodySet= Sets.newConcurrentHashSet();
+		Set<String> bodySet = Sets.newConcurrentHashSet();
 		for (int i = 0; i < params.length; i++) {
 			RequestBuilderStrategy.builder(uriBuilder, headers, bodyFile, bodySet, params[i], args[i]);
 		}

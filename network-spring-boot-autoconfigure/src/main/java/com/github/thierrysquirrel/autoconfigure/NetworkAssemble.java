@@ -82,7 +82,7 @@ public class NetworkAssemble implements ImportBeanDefinitionRegistrar, ResourceL
 
 			BeanDefinitionBuilder definition = BeanDefinitionBuilder.genericBeanDefinition(NetworkFactory.class);
 			String className = annotationMetadata.getClassName();
-			definition.addPropertyValue(NetworkFactoryConstants.PROPERTY_VALUE, className);
+			definition.addPropertyValue(NetworkFactoryConstants.PROPERTY_VALUE.getValue(), className);
 			definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 
 			AbstractBeanDefinition abstractBeanDefinition = definition.getBeanDefinition();

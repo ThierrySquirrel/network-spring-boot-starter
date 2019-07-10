@@ -30,6 +30,9 @@ import java.lang.reflect.Proxy;
  * @since JDK 1.8
  */
 public class NetworkProxyFactory {
+	private NetworkProxyFactory() {
+	}
+
 	@SuppressWarnings("unchecked")
 	public static <T> T createInstance(Class<T> type) {
 		return (T) Proxy.newProxyInstance(type.getClassLoader(), new Class[]{type}, new NetworkProxy());

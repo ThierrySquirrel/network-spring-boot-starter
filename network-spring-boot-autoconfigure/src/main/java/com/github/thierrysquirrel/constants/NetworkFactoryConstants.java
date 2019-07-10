@@ -18,13 +18,26 @@ package com.github.thierrysquirrel.constants;
 
 
 /**
- * ClassName: NetworkFactoryConstants 
- * Description: 
+ * ClassName: NetworkFactoryConstants
+ * Description:
  * date: 2019/6/10 21:41
+ *
  * @author ThierrySquirrel
- * @version
  * @since JDK 1.8
  */
-public interface NetworkFactoryConstants {
-	String PROPERTY_VALUE="type";
+public enum NetworkFactoryConstants {
+	/**
+	 * Property Value
+	 */
+	PROPERTY_VALUE("type");
+	private String value;
+
+	NetworkFactoryConstants(String value) {
+		this.value = value;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
 }
