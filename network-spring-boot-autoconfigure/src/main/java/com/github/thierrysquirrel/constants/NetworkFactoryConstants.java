@@ -33,6 +33,7 @@ public enum NetworkFactoryConstants {
 	private String value;
 
 	NetworkFactoryConstants(String value) {
+
 		this.value = value;
 	}
 

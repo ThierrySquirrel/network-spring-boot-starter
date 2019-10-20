@@ -5,11 +5,15 @@
     <parent>
         <artifactId>network-spring-boot</artifactId>
         <groupId>com.github.thierrysquirrel</groupId>
-        <version>1.0.2-RELEASE</version>
+        <version>1.0.3-RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>network-spring-boot-autoconfigure</artifactId>
+
+    <name>network-spring-boot-autoconfigure</name>
+    <description>network-spring-boot-autoconfigure</description>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
