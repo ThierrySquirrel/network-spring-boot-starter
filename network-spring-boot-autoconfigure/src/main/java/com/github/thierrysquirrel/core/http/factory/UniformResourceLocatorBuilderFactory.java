@@ -18,11 +18,10 @@ package com.github.thierrysquirrel.core.http.factory;
 
 
 import com.github.thierrysquirrel.constants.RequestConstants;
-import org.apache.http.client.utils.URIBuilder;
+import com.github.thierrysquirrel.core.http.builder.UniformResourceLocatorBuilder;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URISyntaxException;
 
 /**
  * ClassName: UniformResourceLocatorBuilderFactory
@@ -36,9 +35,9 @@ public class UniformResourceLocatorBuilderFactory {
 	private UniformResourceLocatorBuilderFactory() {
 	}
 
-	public static <T> URIBuilder create(T annotation) throws URISyntaxException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+	public static <T> UniformResourceLocatorBuilder create(T annotation) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 		Method method = annotation.getClass().getMethod(RequestConstants.VALUE.getValue());
 		Object url = method.invoke(annotation);
-		return new URIBuilder(url.toString());
+		return new UniformResourceLocatorBuilder(url.toString());
 	}
 }

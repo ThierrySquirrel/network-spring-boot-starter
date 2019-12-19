@@ -79,7 +79,6 @@ public class NetworkAssemble implements ImportBeanDefinitionRegistrar, ResourceL
 		candidateComponents.forEach(beanDefinition -> {
 			AnnotatedBeanDefinition annotatedBeanDefinition = (AnnotatedBeanDefinition) beanDefinition;
 			AnnotationMetadata annotationMetadata = annotatedBeanDefinition.getMetadata();
-
 			BeanDefinitionBuilder definition = BeanDefinitionBuilder.genericBeanDefinition(NetworkFactory.class);
 			String className = annotationMetadata.getClassName();
 			definition.addPropertyValue(NetworkFactoryConstants.PROPERTY_VALUE.getValue(), className);

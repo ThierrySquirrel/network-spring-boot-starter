@@ -14,25 +14,27 @@
  * limitations under the License.
  */
 
-package com.github.thierrysquirrel.autoconfigure;
+package com.github.thierrysquirrel.core.http.factory;
 
-import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import com.github.thierrysquirrel.autoconfigure.NetworkProperties;
+import com.github.thierrysquirrel.core.http.builder.OkHttpClientBuilder;
+import okhttp3.OkHttpClient;
 
 /**
- * ClassName: NetworkProperties
+ * ClassName: OkHttpClientBuilderFactory
  * Description:
- * date: 2019/6/8 20:39
+ * date: 2019/12/19 16:07
  *
  * @author ThierrySquirrel
  * @since JDK 1.8
  */
-@Data
-@ConfigurationProperties(prefix = NetworkProperties.NETWORK_PREFIX)
-public class NetworkProperties {
-	public static final String NETWORK_PREFIX = "thierrysquirrel";
-	private Integer connectTimeout = 1000;
-	private Integer readTimeout = 1000;
-	private Integer writeTimeout = 1000;
+public class OkHttpClientBuilderFactory {
+	private OkHttpClientBuilderFactory() {
+	}
 
+	public static OkHttpClient createdOkHttp(NetworkProperties networkProperties) {
+		OkHttpClient.Builder builder = new OkHttpClient.Builder();
+		OkHttpClientBuilder.builderTimeout(builder, networkProperties);
+		return builder.build();
+	}
 }

@@ -13,21 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.github.thierrysquirrel.core.http.builder;
 
 
-import com.github.thierrysquirrel.autoconfigure.NetworkProperties;
-import com.github.thierrysquirrel.core.utils.ObjectUtils;
-import lombok.Data;
-import org.apache.http.client.fluent.Request;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 
-import java.io.File;
-import java.nio.charset.Charset;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * ClassName: RequestBuilder
@@ -37,48 +30,31 @@ import java.util.Set;
  * @author ThierrySquirrel
  * @since JDK 1.8
  */
-@Data
 public class RequestBuilder {
-	private Request request;
-
-	public RequestBuilder(Request request) {
-		this.request = request;
+	private RequestBuilder() {
 	}
 
-	public void setHeaders(Map<String, String> headers) {
-		if (ObjectUtils.isEmpty(headers)) {
-			return;
-		}
-		headers.forEach(request::setHeader);
+	public static void builderUrl(Request.Builder builder, String url) {
+		builder.url(url);
 	}
 
-	public void setBodyFile(Map<String, File> fileMap) {
-		if (ObjectUtils.isEmpty(fileMap)) {
-			return;
-		}
-
-		MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-		multipartEntityBuilder.setCharset(Charset.defaultCharset());
-		multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-		fileMap.forEach(multipartEntityBuilder::addBinaryBody);
-
-		request.body(multipartEntityBuilder.build());
+	public static void builderHeaders(Request.Builder builder, Map<String, String> map) {
+		map.forEach(builder::addHeader);
 	}
 
-
-	public void setBody(Set<String> bodySet) {
-		if (ObjectUtils.isEmpty(bodySet)) {
-			return;
-		}
-		bodySet.forEach(body -> request.bodyString(body, ContentType.APPLICATION_JSON));
-
+	public static void builderGet(Request.Builder builder) {
+		builder.get();
 	}
 
-	public void setTimeout(NetworkProperties networkProperties) {
-		request.connectTimeout(networkProperties.getConnectTimeout()).socketTimeout(networkProperties.getSocketTimeout());
+	public static void builderPut(Request.Builder builder, RequestBody requestBody) {
+		builder.put(requestBody);
 	}
 
-	public Request builder() {
-		return request;
+	public static void builderPost(Request.Builder builder, RequestBody requestBody) {
+		builder.post(requestBody);
+	}
+
+	public static void builderDelete(Request.Builder builder, RequestBody requestBody) {
+		builder.delete(requestBody);
 	}
 }

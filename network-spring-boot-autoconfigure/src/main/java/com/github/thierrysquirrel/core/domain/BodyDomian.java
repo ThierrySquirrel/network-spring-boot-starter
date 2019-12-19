@@ -14,25 +14,19 @@
  * limitations under the License.
  */
 
-package com.github.thierrysquirrel.autoconfigure;
+package com.github.thierrysquirrel.core.domain;
 
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * ClassName: NetworkProperties
+ * ClassName: BodyDomian
  * Description:
- * date: 2019/6/8 20:39
+ * date: 2019/12/19 20:42
  *
  * @author ThierrySquirrel
  * @since JDK 1.8
  */
 @Data
-@ConfigurationProperties(prefix = NetworkProperties.NETWORK_PREFIX)
-public class NetworkProperties {
-	public static final String NETWORK_PREFIX = "thierrysquirrel";
-	private Integer connectTimeout = 1000;
-	private Integer readTimeout = 1000;
-	private Integer writeTimeout = 1000;
-
+public class BodyDomian {
+	private String body;
 }

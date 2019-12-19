@@ -21,10 +21,10 @@ import com.github.thierrysquirrel.annotation.DeleteRequest;
 import com.github.thierrysquirrel.annotation.GetRequest;
 import com.github.thierrysquirrel.annotation.PostRequest;
 import com.github.thierrysquirrel.annotation.PutRequest;
+import com.github.thierrysquirrel.core.http.builder.RequestBuilder;
 import com.github.thierrysquirrel.error.NetworkException;
-import org.apache.http.client.fluent.Request;
-
-import java.net.URI;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 
 /**
  * ClassName: RequestStrategy
@@ -38,19 +38,19 @@ public class RequestStrategy {
 	private RequestStrategy() {
 	}
 
-	public static <T> Request createRequest(T annotation, URI url) throws NetworkException {
+	public static <T> Request createRequest(T annotation, Request.Builder builder, RequestBody requestBody) throws NetworkException {
 		if (annotation instanceof GetRequest) {
-			return Request.Get(url);
+			RequestBuilder.builderGet(builder);
 		}
 		if (annotation instanceof PostRequest) {
-			return Request.Post(url);
+			RequestBuilder.builderPost(builder, requestBody);
 		}
 		if (annotation instanceof PutRequest) {
-			return Request.Put(url);
+			RequestBuilder.builderPut(builder, requestBody);
 		}
 		if (annotation instanceof DeleteRequest) {
-			return Request.Delete(url);
+			RequestBuilder.builderDelete(builder, requestBody);
 		}
-		throw new NetworkException("Annotations do not exist");
+		return builder.build();
 	}
 }

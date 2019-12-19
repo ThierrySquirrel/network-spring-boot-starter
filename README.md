@@ -18,7 +18,7 @@ Support function：
         <dependency>
             <artifactId>network-spring-boot-starter</artifactId>
             <groupId>com.github.thierrysquirrel</groupId>
-            <version>1.0.2-RELEASE</version>
+            <version>2.0.0-RELEASE</version>
         </dependency>
 ```  
  ### configuration file
@@ -26,7 +26,8 @@ Support function：
  ```properties
  ## application.properties
 thierrysquirrel.connect-timeout= #Connect Timeout
-thierrysquirrel.socket-timeout= #Socket Timeout
+thierrysquirrel.read-timeout= #Read Timeout
+thierrysquirrel.write-timeout= #Write Timeout
  ```
  # Start Network
  ```java

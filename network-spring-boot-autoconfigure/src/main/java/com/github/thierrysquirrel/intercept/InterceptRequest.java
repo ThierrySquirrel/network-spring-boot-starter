@@ -18,24 +18,22 @@ package com.github.thierrysquirrel.intercept;
 
 
 import com.github.thierrysquirrel.autoconfigure.NetworkProperties;
+import com.github.thierrysquirrel.core.domain.BodyDomian;
+import com.github.thierrysquirrel.core.http.builder.UniformResourceLocatorBuilder;
 import com.github.thierrysquirrel.core.http.factory.RequestBuilderFactory;
 import com.github.thierrysquirrel.core.http.factory.UniformResourceLocatorBuilderFactory;
 import com.github.thierrysquirrel.core.http.factory.execution.RequestFactoryExecution;
 import com.github.thierrysquirrel.core.http.strategy.RequestBuilderStrategy;
 import com.github.thierrysquirrel.error.NetworkException;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import org.apache.http.client.fluent.Request;
-import org.apache.http.client.utils.URIBuilder;
+import okhttp3.Request;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Parameter;
-import java.net.URISyntaxException;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * ClassName: InterceptRequest
@@ -49,15 +47,15 @@ public class InterceptRequest {
 	private InterceptRequest() {
 	}
 
-	public static <T extends Annotation> Object intercept(NetworkProperties networkProperties, Object[] args, Parameter[] params, T annotation, Class<?> resultType) throws IOException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, URISyntaxException, NetworkException {
+	public static <T extends Annotation> Object intercept(NetworkProperties networkProperties, Object[] args, Parameter[] params, T annotation, Class<?> resultType) throws IOException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, NetworkException {
 		Map<String, String> headers = Maps.newConcurrentMap();
-		Map<String, File> bodyFile = Maps.newConcurrentMap();
-		URIBuilder uriBuilder = UniformResourceLocatorBuilderFactory.create(annotation);
-		Set<String> bodySet = Sets.newConcurrentHashSet();
+		UniformResourceLocatorBuilder uriBuilder = UniformResourceLocatorBuilderFactory.create(annotation);
+		Map<String, File> fileMap = Maps.newConcurrentMap();
+		BodyDomian bodyDomian = new BodyDomian();
 		for (int i = 0; i < params.length; i++) {
-			RequestBuilderStrategy.builder(uriBuilder, headers, bodyFile, bodySet, params[i], args[i]);
+			RequestBuilderStrategy.builder(uriBuilder, headers, fileMap, bodyDomian, params[i], args[i]);
 		}
-		Request request = RequestBuilderFactory.createRequest(annotation, uriBuilder.build(), headers, bodyFile, bodySet, networkProperties);
-		return RequestFactoryExecution.execute(request, resultType);
+		Request request = RequestBuilderFactory.createRequest(annotation, uriBuilder.builder(), headers, fileMap, bodyDomian.getBody());
+		return RequestFactoryExecution.execute(networkProperties, request, resultType);
 	}
 }

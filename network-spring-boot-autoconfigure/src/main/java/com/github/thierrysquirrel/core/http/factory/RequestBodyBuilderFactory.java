@@ -16,35 +16,33 @@
 
 package com.github.thierrysquirrel.core.http.factory;
 
-
-import com.github.thierrysquirrel.core.http.builder.RequestBuilder;
-import com.github.thierrysquirrel.core.http.strategy.RequestStrategy;
-import com.github.thierrysquirrel.error.NetworkException;
-import okhttp3.Request;
+import com.github.thierrysquirrel.core.http.builder.RequestBodyBuilder;
 import okhttp3.RequestBody;
+import org.springframework.util.ObjectUtils;
 
 import java.io.File;
 import java.util.Map;
 
 /**
- * ClassName: RequestBuilderFactory
+ * ClassName: RequestBodyBuilderFactory
  * Description:
- * date: 2019/6/9 21:23
+ * date: 2019/12/19 16:27
  *
  * @author ThierrySquirrel
  * @since JDK 1.8
  */
-public class RequestBuilderFactory {
-	private RequestBuilderFactory() {
+public class RequestBodyBuilderFactory {
+	private RequestBodyBuilderFactory() {
 	}
 
-	public static <T> Request createRequest(T annotation, String url, Map<String, String> headers, Map<String, File> fileMap, String body) throws NetworkException {
-		Request.Builder builder = new Request.Builder();
-		RequestBuilder.builderUrl(builder, url);
-		RequestBuilder.builderHeaders(builder, headers);
-
-		RequestBody requestBody = RequestBodyBuilderFactory.createdMultipartBody(fileMap, body);
-
-		return RequestStrategy.createRequest(annotation, builder, requestBody);
+	public static RequestBody createdMultipartBody(Map<String, File> fileMap, String body) {
+		if (ObjectUtils.isEmpty(fileMap) && ObjectUtils.isEmpty(body)) {
+			return null;
+		}
+		RequestBody requestBody = RequestBodyBuilder.builderFileBody(fileMap);
+		if (requestBody == null) {
+			requestBody = RequestBodyBuilder.builderBody(body);
+		}
+		return requestBody;
 	}
 }

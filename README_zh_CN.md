@@ -18,7 +18,7 @@
         <dependency>
             <artifactId>network-spring-boot-starter</artifactId>
             <groupId>com.github.thierrysquirrel</groupId>
-            <version>1.0.2-RELEASE</version>
+            <version>2.0.0-RELEASE</version>
         </dependency>
 ``` 
  ### 配置文件
@@ -26,7 +26,8 @@
  ```properties
  ## application.properties
 thierrysquirrel.connect-timeout= #连接超时
-thierrysquirrel.socket-timeout= #通信超时
+thierrysquirrel.read-timeout= #读超时
+thierrysquirrel.write-timeout= #写超时
  ```
 # 启动Network
 ```java

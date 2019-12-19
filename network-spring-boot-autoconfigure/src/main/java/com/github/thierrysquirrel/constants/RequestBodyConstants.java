@@ -14,25 +14,33 @@
  * limitations under the License.
  */
 
-package com.github.thierrysquirrel.autoconfigure;
-
-import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+package com.github.thierrysquirrel.constants;
 
 /**
- * ClassName: NetworkProperties
+ * ClassName: RequestBodyConstants
  * Description:
- * date: 2019/6/8 20:39
+ * date: 2019/12/19 15:28
  *
  * @author ThierrySquirrel
  * @since JDK 1.8
  */
-@Data
-@ConfigurationProperties(prefix = NetworkProperties.NETWORK_PREFIX)
-public class NetworkProperties {
-	public static final String NETWORK_PREFIX = "thierrysquirrel";
-	private Integer connectTimeout = 1000;
-	private Integer readTimeout = 1000;
-	private Integer writeTimeout = 1000;
+public enum RequestBodyConstants {
+	/**
+	 * application/octet-stream
+	 */
+	MEDIA_TYPE_FILE("application/octet-stream;charset=utf-8"),
+	/**
+	 * application/json
+	 */
+	MEDIA_TYPE_BODY("application/json;charset=utf-8");
+	private String value;
 
+	RequestBodyConstants(String value) {
+
+		this.value = value;
+	}
+
+	public String getValue() {
+		return value;
+	}
 }

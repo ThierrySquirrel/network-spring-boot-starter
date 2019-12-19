@@ -17,8 +17,13 @@
 package com.github.thierrysquirrel.core.http.factory.execution;
 
 
+import com.github.thierrysquirrel.autoconfigure.NetworkProperties;
+import com.github.thierrysquirrel.core.http.factory.OkHttpClientBuilderFactory;
 import com.github.thierrysquirrel.core.utils.JsonUtils;
-import org.apache.http.client.fluent.Request;
+import com.github.thierrysquirrel.error.NetworkException;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.ResponseBody;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,14 +40,19 @@ public class RequestFactoryExecution {
 	private RequestFactoryExecution() {
 	}
 
-	public static <T> Object execute(Request request, Class<T> resultType) throws IOException {
+	public static <T> Object execute(NetworkProperties networkProperties, Request request, Class<T> resultType) throws IOException, NetworkException {
 
+		OkHttpClient okHttpClient = OkHttpClientBuilderFactory.createdOkHttp(networkProperties);
+		ResponseBody body = okHttpClient.newCall(request).execute().body();
+		if (body == null) {
+			throw new NetworkException("body is null");
+		}
 		if (resultType.equals(InputStream.class)) {
-			return request.execute().returnContent().asStream();
+			return body.byteStream();
 		}
 
-		String result = request.execute().returnContent().asString();
-
+		String result = body.string();
+		System.out.println(result);
 		if (resultType.equals(String.class)) {
 			return result;
 		}
