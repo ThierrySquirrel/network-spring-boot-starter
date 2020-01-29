@@ -24,7 +24,7 @@ import com.github.thierrysquirrel.annotation.NetworkParam;
 import com.github.thierrysquirrel.core.domain.BodyDomian;
 import com.github.thierrysquirrel.core.http.builder.UniformResourceLocatorBuilder;
 import com.github.thierrysquirrel.core.utils.JsonUtils;
-import com.github.thierrysquirrel.core.utils.ObjectUtils;
+import com.github.thierrysquirrel.core.utils.ObjectIsEmptyUtils;
 
 import java.io.File;
 import java.lang.reflect.Parameter;
@@ -43,24 +43,23 @@ public class RequestBuilderStrategy {
 	}
 
 	public static void builder(UniformResourceLocatorBuilder uriBuilder, Map<String, String> headers, Map<String, File> fileMap, BodyDomian bodyDomian, Parameter parameter, Object arg) {
-
 		NetworkParam networkParam = parameter.getAnnotation(NetworkParam.class);
-		if (ObjectUtils.isNotEmpty(networkParam)) {
+		if (ObjectIsEmptyUtils.isNotEmpty(networkParam)) {
 			uriBuilder.setParameter(networkParam.value(), arg.toString());
 			return;
 		}
 		NetworkHeader networkHeader = parameter.getAnnotation(NetworkHeader.class);
-		if (ObjectUtils.isNotEmpty(networkHeader)) {
+		if (ObjectIsEmptyUtils.isNotEmpty(networkHeader)) {
 			headers.put(networkHeader.value(), arg.toString());
 			return;
 		}
 		NetworkFile networkFile = parameter.getAnnotation(NetworkFile.class);
-		if (ObjectUtils.isNotEmpty(networkFile)) {
+		if (ObjectIsEmptyUtils.isNotEmpty(networkFile)) {
 			fileMap.put(networkFile.value(), (File) arg);
 			return;
 		}
 		NetworkBody networkBody = parameter.getAnnotation(NetworkBody.class);
-		if (ObjectUtils.isNotEmpty(networkBody)) {
+		if (ObjectIsEmptyUtils.isNotEmpty(networkBody)) {
 			bodyDomian.setBody(JsonUtils.toJson(arg));
 		}
 

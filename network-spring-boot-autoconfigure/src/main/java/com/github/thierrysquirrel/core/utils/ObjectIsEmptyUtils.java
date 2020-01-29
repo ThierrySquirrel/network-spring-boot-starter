@@ -17,45 +17,22 @@
 package com.github.thierrysquirrel.core.utils;
 
 
-import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
+import org.springframework.util.ObjectUtils;
 
 /**
- * ClassName: ObjectUtils
+ * ClassName: ObjectIsEmptyUtils
  * Description:
  * date: 2019/6/8 21:20
  *
  * @author ThierrySquirrel
  * @since JDK 1.8
  */
-public class ObjectUtils {
-	private ObjectUtils() {
+public class ObjectIsEmptyUtils {
+	private ObjectIsEmptyUtils() {
 	}
 
 	public static boolean isEmpty(Object obj) {
-		if (obj == null) {
-			return Boolean.TRUE;
-		}
-
-		if (obj instanceof Optional) {
-			return !((Optional) obj).isPresent();
-		}
-		if (obj instanceof CharSequence) {
-			return ((CharSequence) obj).length() == 0;
-		}
-		if (obj.getClass().isArray()) {
-			return Array.getLength(obj) == 0;
-		}
-		if (obj instanceof Collection) {
-			return ((Collection) obj).isEmpty();
-		}
-		if (obj instanceof Map) {
-			return ((Map) obj).isEmpty();
-		}
-
-		return Boolean.FALSE;
+		return ObjectUtils.isEmpty(obj);
 	}
 
 	public static boolean isNotEmpty(Object obj) {
