@@ -9,4 +9,4 @@ ${AnsiColor.BRIGHT_GREEN}
      `\       /'
        `-._.-'
           `
-network version:2.1.3.RELEASE
+network version:2.1.4.RELEASE
