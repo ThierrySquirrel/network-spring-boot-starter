@@ -18,7 +18,7 @@ Support function：
         <dependency>
             <artifactId>network-spring-boot-starter</artifactId>
             <groupId>com.github.thierrysquirrel</groupId>
-            <version>2.3.0.3-RELEASE</version>
+            <version>2.3.0.4-RELEASE</version>
         </dependency>
 ```  
  ### configuration file
