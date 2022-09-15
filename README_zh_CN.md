@@ -87,5 +87,5 @@ public class Demo {
 }
 ```
 
-![AmericanFlag](https://user-images.githubusercontent.com/49895274/184471014-e9626879-b9cf-403e-b3a0-6f3ae613dd65.jpeg)  
+![Russian flag](https://user-images.githubusercontent.com/49895274/190372773-cb461b7a-a286-413a-9a44-cbb33b209ba5.png)
 
